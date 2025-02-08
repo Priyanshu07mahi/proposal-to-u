@@ -8,16 +8,19 @@
         body {
             margin: 0;
             padding: 0;
-            background: url('background.jpg') no-repeat center center/cover;
+            background: url('./background.jpg') no-repeat center center/cover;
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             color: white;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         .container {
             display: flex;
             height: 100vh;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         #revealBtn {
             padding: 20px 40px;
@@ -34,14 +37,12 @@
         }
         #surprise {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: relative;
             width: 100%;
-            height: 100%;
             background: rgba(0, 0, 0, 0.8);
             text-align: center;
-            padding-top: 10vh;
+            padding: 20px;
+            box-sizing: border-box;
             animation: fadeIn 2s ease-in-out forwards;
         }
         @keyframes fadeIn {
@@ -49,24 +50,24 @@
             to { opacity: 1; }
         }
         h1 {
-            font-size: 60px;
+            font-size: 36px;
             margin-top: 20px;
             text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
             color: #ff4d79;
         }
-        .image-row {
+        .image-grid {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
-            flex-wrap: wrap;
         }
-        .image-row img {
-            width: 250px;
-            height: 250px;
+        .image-grid img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
             border-radius: 15px;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
-            object-fit: cover;
         }
         .shayari {
             margin-top: 30px;
@@ -82,10 +83,37 @@
         audio {
             display: none;
         }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            .image-grid img {
+                max-width: 100%;
+            }
+            .shayari {
+                font-size: 20px;
+                padding: 8px 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            #revealBtn {
+                font-size: 20px;
+                padding: 15px 30px;
+            }
+            .shayari {
+                font-size: 18px;
+                padding: 6px 12px;
+            }
+        }
     </style>
     <script>
         function showSurprise() {
             document.getElementById('surprise').style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
             document.getElementById('backgroundMusic').play();
         }
     </script>
@@ -97,15 +125,15 @@
     
     <div id="surprise">
         <h1>I LOVE YOU SWEETY ❤️</h1>
-        <div class="image-row">
-            <img src="image1.jpg" alt="Sweety 1">
-            <img src="image2.jpg" alt="Sweety 2">
-            <img src="image3.jpg" alt="Sweety 3">
-            <img src="image5.jpg" alt="Sweety 4">
-            <img src="image4.jpg" alt="Sweety 5">
+        <div class="image-grid">
+            <img src="./image1.jpg" alt="Sweety 1">
+            <img src="./image2.jpg" alt="Sweety 2">
+            <img src="./image3.jpg" alt="Sweety 3">
+            <img src="./image4.jpg" alt="Sweety 4">
+            <img src="./image5.jpg" alt="Sweety 5">
         </div>
         <div class="shayari">"Tum jo aaye zindagi mein, baat ban gayi ❤️"</div>
     </div>
-    <audio id="backgroundMusic" src="tum.jo.aaye.mp3" loop></audio>
+    <audio id="backgroundMusic" src="./tum.jo.aaye.mp3" loop></audio>
 </body>
 </html>
